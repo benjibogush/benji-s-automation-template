@@ -1,0 +1,15 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../:\workspace\FrontEnd\BeehabFrameWorkBase\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+.idea
+allure-results
+target
+BeehabFrameWorkBase.iml
+.*iml
+
