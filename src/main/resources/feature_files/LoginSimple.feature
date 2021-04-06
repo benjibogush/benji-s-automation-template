@@ -1,11 +1,7 @@
 Feature: Users can reset their passwords
 
   Background: Login to the environment
-    Given the Admin <"admin"> is in login Page
-      |user		|
-      |Admin    |
-
-
+    Given the Admin admin is in login Page
 
     @Positive
     Scenario: User can enter letters and digits for password

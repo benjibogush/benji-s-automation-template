@@ -1,5 +1,6 @@
 package page_objects;
 
+import data_providers.JsonDataReader;
 import data_providers.PropReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,11 @@ public class LoginPage {
 
     WebDriver driver;
     PropReader propReader;
+    JsonDataReader jsonDataReader;
+    loginData username;
+
+
+
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -38,6 +44,11 @@ public class LoginPage {
     public void enter_credentials(loginData user) {
         txt_username.sendKeys(user.username);
         txt_password.sendKeys(user.password);
+    }
+
+    public void enter_credentials() {
+        txt_username.sendKeys("Admin");
+        txt_password.sendKeys("admin123");
     }
 
     public void click_login() {

@@ -35,4 +35,12 @@ public class LoginSteps {
     public void userCanNavigateToPasswordResetModule() {
         System.out.println(testContext.getWebdriver_manager().getDriver().getTitle());
     }
+
+
+    @Given("the Admin admin is in login Page")
+    public void theAdminAdminIsInLoginPage() {
+        loginPage.navigate_to_loginPage();
+        loginPage.enter_credentials();
+        loginPage.click_login();
+    }
 }
