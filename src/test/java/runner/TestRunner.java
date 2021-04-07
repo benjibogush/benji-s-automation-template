@@ -12,10 +12,11 @@ import java.io.File;
 
 
 @CucumberOptions(
-        features = "src/main/resources/feature_files/Feature1_login.feature",
+       // features = "src/main/resources/feature_files/Feature1_login.feature",
+        features = "src/main/resources/feature_files",
         glue = {"step_definitions"},
         plugin = {"pretty", "json:target/cucumber.json",}    //html:target/cucumber-html-reports
-        ,tags = {"@SmokeTest"}
+        ,tags = {"@AddUser"}
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests {

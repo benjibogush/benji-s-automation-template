@@ -3,7 +3,7 @@ package data_providers;
 import com.google.gson.Gson;
 import managers.FileReaderManager;
 import testDataTypes.empData;
-import testDataTypes.loginData;
+import testDataTypes.LoginData;
 import testDataTypes.searchEmpData;
 
 import java.io.BufferedReader;
@@ -18,9 +18,9 @@ public class JsonDataReader {
 	private final String loginInfoFilePath = FileReaderManager.getInstance().getConfigFileReader().getTestDataResourcePath()+"login.json";
 	private final String empInfoFilePath = FileReaderManager.getInstance().getConfigFileReader().getTestDataResourcePath()+"newEmp.json";
 	private final String searchEmpFilePath = FileReaderManager.getInstance().getConfigFileReader().getTestDataResourcePath()+"searchEmp.json";
-	private List<loginData> userList;
-	private List<empData> employeeList;
-	private List<searchEmpData> searchDataList;
+	private final List<LoginData> userList;
+	private final List<empData> employeeList;
+	private final List<searchEmpData> searchDataList;
 
 
 	public JsonDataReader()
@@ -30,12 +30,12 @@ public class JsonDataReader {
 		searchDataList = getSearchEmpData();
 	}
 
-	private List<loginData> getUserData(){
+	private List<LoginData> getUserData(){
 		Gson gson = new Gson();
 		BufferedReader bufferReader = null;
 		try {
 			bufferReader = new BufferedReader(new FileReader(loginInfoFilePath));
-			loginData[] users = gson.fromJson(bufferReader, loginData[].class);
+			LoginData[] users = gson.fromJson(bufferReader, LoginData[].class);
 			return Arrays.asList(users);
 		}
 		catch(FileNotFoundException e) {
@@ -81,8 +81,8 @@ public class JsonDataReader {
 		}
 	}
 
-	public final loginData getUserByName(String userName ) {
-		return userList.stream().filter(x -> x.username.equalsIgnoreCase(userName)).findAny().get();
+	public final LoginData getUserByName(String userName ) {
+		return userList.stream().filter(x -> x.getUsername().equalsIgnoreCase(userName)).findAny().get();
 
 	}
 
