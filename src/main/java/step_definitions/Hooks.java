@@ -1,23 +1,18 @@
 package step_definitions;
 
 
-
-
-import com.vimalselvam.cucumber.listener.Reporter;
 import cucumber.TestContext;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import managers.WebDriver_Manager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
-
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.io.FileHandler;
+import org.testng.Reporter;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class Hooks {
 
@@ -40,26 +35,24 @@ public class Hooks {
     @After(order = 0)
     public void afterScenario(Scenario scenario) {
 
-        if(scenario.isFailed())
-        {
-            String screenshotName = scenario.getName().replaceAll("", "_");
-            try {
+        if(scenario.isFailed()){
 
-                File sourcePath = ((TakesScreenshot) testContext.getWebdriver_manager().getDriver()).getScreenshotAs(OutputType.FILE);
+            try{
+                byte[] screenshot = ((TakesScreenshot) testContext.getWebdriver_manager().getDriver()).getScreenshotAs(OutputType.BYTES);
+                File screenshot_with_scenario_name = ((TakesScreenshot) testContext.getWebdriver_manager().getDriver()).getScreenshotAs(OutputType.FILE);
+                FileHandler.copy(screenshot_with_scenario_name,
+                        new File("./target/" + "scenario.getName()" + ".png"));
+                System.out.println(scenario.getName());
+                scenario.attach(screenshot, "image/png", "snap");
+            }
 
-                File destinationPath = new File(System.getProperty("user.dir")+"/target/cucumber-reports/screenshots/"+screenshotName+".png");
-
-                Files.copy(sourcePath.toPath(), Path.of(destinationPath.getAbsolutePath()));
-
-
-                //Reporter.addScreenCaptureFromPath(destinationPath.toString());
-                Reporter.getExtentHtmlReport();
-
-            }catch(IOException e) {
-
+            catch (WebDriverException | IOException somePlatformsDontSupportScreenshots){
+                System.err.println(somePlatformsDontSupportScreenshots.getMessage());
             }
         }
-    }
+
+        }
+
 
 //    @After(order = 0)
 //    public void tearDown(Scenario scenario) {

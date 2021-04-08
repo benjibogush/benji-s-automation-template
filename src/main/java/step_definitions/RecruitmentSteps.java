@@ -30,6 +30,7 @@ public class RecruitmentSteps {
 
     @Then("user logs off")
     public void user_logs_off() {
+        recruitmentPage.enterUserInfo();
       // testContext.getWebdriver_manager().getDriver().quit();
     }
 
