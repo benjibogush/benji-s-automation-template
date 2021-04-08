@@ -8,8 +8,9 @@
 /httpRequests/
 
 .idea
-allure-results
-target
+/allure-results/
+/target/
 BeehabFrameWorkBase.iml
 .*iml
+
 
