@@ -21,6 +21,9 @@ public class RecruitmentPage {
     @FindBy(how = How.ID, using = "menu_recruitment_viewRecruitmentModule")
     private WebElement recruitmentPage;
 
+    @FindBy(how = How.ID, using = "isim")
+    private WebElement firstName;
+
 
     @FindBy(how = How.ID, using = "btnAdd")
     private WebElement addButton;
@@ -32,4 +35,6 @@ public class RecruitmentPage {
     public void clickAddButton() {
         addButton.click();
     }
+
+    public void enterUserInfo(){firstName.sendKeys("bluh bluh");}
 }
