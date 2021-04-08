@@ -15,7 +15,7 @@ import java.io.File;
         features = "src/main/resources/feature_files",
         glue = {"step_definitions"},
         plugin = {"pretty", "json:target/cucumber.json",}    //html:target/cucumber-html-reports
-        , tags = {"@AddUser"}
+        , tags = "@AddUser"
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests {
